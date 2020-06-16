@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     
     var board = Board(boardSize: 3)
-    var currentPlayer = BoardState.x
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,26 +28,23 @@ class ViewController: UIViewController {
         return nil
     }
     
-    func makeMove(on board: inout Board, row: Int, col: Int, player currentPlayer: BoardState) -> Board {
+    func makeMoveAndCheckForWin(on board: inout Board, row: Int, col: Int, player currentPlayer: BoardState){
         if board.state[row][col] == BoardState.empty {
             board.state[row][col] = currentPlayer
-            //switchPlayer(currentPlayer: currentPlayer)
         }
         
         if let won = isWinningMove(on: board, row: row, col: col, player: currentPlayer) {
             board.winner = won
         } else {
-            //switch player + new round
+            switchPlayer(on: &board)
         }
-        
-        return board
     }
     
-    private func switchPlayer(currentPlayer: BoardState) {
-        if currentPlayer == BoardState.x {
-            self.currentPlayer = BoardState.o
+    private func switchPlayer(on board: inout Board) {
+        if board.currentPlayer == BoardState.x {
+            board.currentPlayer = BoardState.o
         } else {
-            self.currentPlayer = BoardState.x
+            board.currentPlayer = BoardState.x
         }
     }
     
