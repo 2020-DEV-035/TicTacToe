@@ -11,13 +11,13 @@ import XCTest
 
 class TicTacToeTests: XCTestCase {
     
-    var sut: ViewController!
+    var sut: BoardController!
     var x: BoardState!
     var o: BoardState!
     var empty: BoardState!
 
     override func setUpWithError() throws {
-        sut = ViewController()
+        sut = BoardController()
         x = BoardState.x
         o = BoardState.o
         empty = BoardState.empty
