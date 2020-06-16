@@ -12,12 +12,11 @@ class ViewController: UIViewController {
     
     var board = Board(boardSize: 3)
     
-    private lazy var vStack: UIStackView = {
+    private lazy var vStack: UIStackView = { // TODO: better naming
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .fillEqually
-        stack.spacing = 10
         
         return stack
     }()
@@ -44,9 +43,9 @@ class ViewController: UIViewController {
         
         if let won = isWinningMove(row: row, col: col) {
             board.winner = won
-        } else {
-            switchPlayer()
         }
+        
+        switchPlayer()
     }
     
     func isWinningMove(row: Int, col: Int) -> BoardState? {
@@ -78,12 +77,13 @@ class ViewController: UIViewController {
             let hStack = UIStackView()
             hStack.axis = .horizontal
             hStack.distribution = .fillEqually
-            hStack.spacing = 10
             
             for row in 0..<board.size {
                 let myView = UIView()
-                myView.backgroundColor = .red
+                myView.layer.borderWidth = 3
+                myView.layer.borderColor = UIColor.black.cgColor
                 myView.tag = row
+                
                 hStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedOnCell)))
                 hStack.addArrangedSubview(myView)
 
@@ -94,16 +94,26 @@ class ViewController: UIViewController {
         }
     }
     
+    private func updateBoard(where view: UIView) {
+        if board.currentPlayer == BoardState.o {
+            view.backgroundColor = .red
+        } else {
+            view.backgroundColor = .green
+        }
+    }
+    
     @objc func tappedOnCell(gesture: UITapGestureRecognizer) {
         let tapLocation = gesture.location(in: gesture.view)
         let filteredSubviews = gesture.view?.subviews.filter { subView -> Bool in
           return subView.frame.contains(tapLocation)
         }
         
+        guard let tappedView = filteredSubviews?.first else { return }
         guard let row = gesture.view?.tag else { return }
         guard let col = filteredSubviews?.first?.tag else { return }
         
-        print("\(row),\(col)")
+        makeMoveAndCheckForWin(row: row, col: col)
+        updateBoard(where: tappedView)
     }
     
 }
