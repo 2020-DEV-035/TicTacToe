@@ -15,12 +15,14 @@ class TicTacToeTests: XCTestCase {
     var x: BoardOption!
     var o: BoardOption!
     var empty: BoardOption!
+    var board: [[BoardOption]]!
 
     override func setUpWithError() throws {
         sut = ViewController()
         x = BoardOption.x
         o = BoardOption.o
         empty = BoardOption.empty
+        board = [[BoardOption]](repeating: [BoardOption](repeating: BoardOption.empty, count: 3), count: 3)
     }
 
     override func tearDownWithError() throws {
@@ -28,35 +30,36 @@ class TicTacToeTests: XCTestCase {
         x = nil
         o = nil
         empty = nil
+        board = nil
     }
 
     func testPlayerXHorizontalWin() throws {
-        let board: [[BoardOption]] = [[x, x, x,],
-                                     [o, o, empty],
-                                     [empty, empty, empty]]
+        board = [[x, x, x,],
+                [o, o, empty],
+                [empty, empty, empty]]
         
-        let winner = sut.checkForWin(board, currentPlayer: x)
+        let winner = sut.checkForWin(on: board, currentPlayer: x)
         
         XCTAssertEqual(winner, BoardOption.x)
     }
     
     func testPlayerOHorizontalWin() throws {
-        let board: [[BoardOption]] = [[o, o, o,],
-                                     [x, x, empty],
-                                     [empty, empty, empty]]
+        board = [[o, o, o,],
+                [x, x, empty],
+                [empty, empty, empty]]
         
-        let winner = sut.checkForWin(board, currentPlayer: o)
+        let winner = sut.checkForWin(on: board, currentPlayer: o)
         
         XCTAssertEqual(winner, BoardOption.o)
     }
     
     func testPlayerXWinningMove() throws {
-        let board: [[BoardOption]] = [[x, x, empty,],
-                                     [o, o, empty],
-                                     [empty, empty, empty]]
+        board = [[x, x, empty,],
+                [o, o, empty],
+                [empty, empty, empty]]
         
-        sut.makeMove(board, x: 0, y: 3, currentPlayer: x)
-        let winner = sut.checkForWin(board, currentPlayer: x)
+        board = sut.makeMove(on: board, x: 0, y: 2, currentPlayer: x)
+        let winner = sut.checkForWin(on: board, currentPlayer: x)
         
         XCTAssertEqual(winner, BoardOption.x)
     }

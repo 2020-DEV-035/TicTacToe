@@ -13,13 +13,23 @@ class ViewController: UIViewController {
     let boardSize = 3
     var board: [[BoardOption]] = []
     var currentPlayer = BoardOption.x
-
+    
+    required init() {
+        self.board = [[BoardOption]](repeating: [BoardOption](repeating: BoardOption.empty, count: boardSize), count: boardSize)
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+       super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
-
-    func checkForWin(_ board: [[BoardOption]], currentPlayer: BoardOption) -> BoardOption? {
+    
+    func checkForWin(on board: [[BoardOption]], currentPlayer: BoardOption) -> BoardOption? {
         
         //horizontal
         for i in 0..<boardSize {
@@ -30,8 +40,24 @@ class ViewController: UIViewController {
         return nil
     }
     
-    func makeMove(_ board: [[BoardOption]], x: Int, y: Int,  currentPlayer: BoardOption) {
+    func makeMove(on board: [[BoardOption]], x: Int, y: Int,  currentPlayer: BoardOption) -> [[BoardOption]] {
+        var newBoard = board
         
+        if board[x][y] == BoardOption.empty {
+            newBoard[x][y] = BoardOption.x
+            switchPlayer(currentPlayer: currentPlayer)
+        }
+        
+        return newBoard
     }
+    
+    private func switchPlayer(currentPlayer: BoardOption) {
+        if currentPlayer == BoardOption.x {
+            self.currentPlayer = BoardOption.o
+        } else {
+            self.currentPlayer = BoardOption.x
+        }
+    }
+    
 }
 
