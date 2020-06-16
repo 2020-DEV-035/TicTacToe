@@ -62,10 +62,10 @@
 		0E0D63B92498FE3B00918EDA = {
 			isa = PBXGroup;
 			children = (
-				0E0D63E72498FE6500918EDA /* README.md */,
 				0E0D63C42498FE3B00918EDA /* TicTacToe */,
 				0E0D63DB2498FE3C00918EDA /* TicTacToeTests */,
 				0E0D63C32498FE3B00918EDA /* Products */,
+				0E0D63E72498FE6500918EDA /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
