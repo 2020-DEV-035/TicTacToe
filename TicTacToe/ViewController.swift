@@ -124,8 +124,22 @@ class ViewController: UIViewController {
         }
         
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "New game", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "New game", style: .default, handler: { action in
+            self.resetViewAndBoard()
+        }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func resetViewAndBoard() {
+        for row in self.vStack.arrangedSubviews {
+            for item in row.subviews {
+                if let imageView = item as? UIImageView {
+                    imageView.image = UIImage(named: "blank")
+                }
+            }
+        }
+        
+        board.reset()
     }
     
     @objc func tappedOnCell(gesture: UITapGestureRecognizer) {

@@ -38,7 +38,7 @@ class TicTacToeTests: XCTestCase {
         
         sut.makeMoveAndCheckForWin(row: 0, col: 2)
         
-        XCTAssertEqual(sut.board.winner, sut.board.currentPlayer)
+        XCTAssertEqual(sut.board.winner, x)
     }
     
     func testHorizontalWinOnSecondRow() throws {
@@ -49,7 +49,7 @@ class TicTacToeTests: XCTestCase {
         
         sut.makeMoveAndCheckForWin(row: 1, col: 2)
         
-        XCTAssertEqual(sut.board.winner, sut.board.currentPlayer)
+        XCTAssertEqual(sut.board.winner, o)
     }
     
     func testHorizontalWinOnThirdRow() throws {
@@ -60,7 +60,7 @@ class TicTacToeTests: XCTestCase {
         
         sut.makeMoveAndCheckForWin(row: 2, col: 2)
         
-        XCTAssertEqual(sut.board.winner, sut.board.currentPlayer)
+        XCTAssertEqual(sut.board.winner, o)
     }
     
     func testIsStartPlayerX() throws {
@@ -104,6 +104,27 @@ class TicTacToeTests: XCTestCase {
         sut.makeMoveAndCheckForWin(row: 0, col: 0)
         
         XCTAssertEqual(sut.board.moveCount, 1)
+    }
+    
+    func testReset() throws {
+        sut.board.state = [[x, o, x,],
+                           [o, x, o],
+                           [o, x, empty]]
+        sut.board.currentPlayer = o
+        sut.board.moveCount = 8
+        sut.board.winner = o
+        let image = UIImageView.init(image: UIImage(named: "O"))
+        sut.board.tappedCell = image
+        
+        sut.board.reset()
+        
+        XCTAssertEqual(sut.board.state, [[empty, empty, empty,],
+                                        [empty, empty, empty],
+                                        [empty, empty, empty]])
+        XCTAssertEqual(sut.board.currentPlayer, x)
+        XCTAssertEqual(sut.board.moveCount, 0)
+        XCTAssertNil(sut.board.winner)
+        XCTAssertNil(sut.board.tappedCell)
     }
 
 }

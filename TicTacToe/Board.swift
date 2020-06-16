@@ -19,6 +19,14 @@ struct Board {
         self.size = boardSize
         self.currentPlayer = BoardState.x
         self.moveCount = 0
-        state = [[BoardState]](repeating: [BoardState](repeating: BoardState.empty, count: boardSize), count: boardSize)
+        self.state = [[BoardState]](repeating: [BoardState](repeating: BoardState.empty, count: boardSize), count: boardSize)
+    }
+    
+    mutating func reset() {
+        self.currentPlayer = BoardState.x
+        self.moveCount = 0
+        self.winner = nil
+        self.tappedCell = nil
+        self.state = [[BoardState]](repeating: [BoardState](repeating: BoardState.empty, count: self.size), count: self.size)
     }
 }
