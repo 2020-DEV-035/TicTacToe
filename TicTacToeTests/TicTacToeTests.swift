@@ -15,14 +15,12 @@ class TicTacToeTests: XCTestCase {
     var x: BoardState!
     var o: BoardState!
     var empty: BoardState!
-    var board: Board!
 
     override func setUpWithError() throws {
         sut = ViewController()
         x = BoardState.x
         o = BoardState.o
         empty = BoardState.empty
-        board = Board(boardSize: 3)
     }
 
     override func tearDownWithError() throws {
@@ -30,83 +28,82 @@ class TicTacToeTests: XCTestCase {
         x = nil
         o = nil
         empty = nil
-        board = nil
     }
 
     func testHorizontalWinOnFirstRow() throws {
-        board.state = [[x, x, empty,],
+        sut.board.state = [[x, x, empty,],
                        [o, o, empty],
                        [empty, empty, empty]]
-        board.currentPlayer = x
+        sut.board.currentPlayer = x
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 2)
+        sut.makeMoveAndCheckForWin(row: 0, col: 2)
         
-        XCTAssertEqual(board.winner, board.currentPlayer)
+        XCTAssertEqual(sut.board.winner, sut.board.currentPlayer)
     }
     
     func testHorizontalWinOnSecondRow() throws {
-        board.state = [[x, x, empty,],
+        sut.board.state = [[x, x, empty,],
                        [o, o, empty],
                        [empty, empty, empty]]
-        board.currentPlayer = o
+        sut.board.currentPlayer = o
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 1, col: 2)
+        sut.makeMoveAndCheckForWin(row: 1, col: 2)
         
-        XCTAssertEqual(board.winner, board.currentPlayer)
+        XCTAssertEqual(sut.board.winner, sut.board.currentPlayer)
     }
     
     func testHorizontalWinOnThirdRow() throws {
-        board.state = [[x, x, empty,],
+        sut.board.state = [[x, x, empty,],
                        [empty, empty, empty],
                        [o, o, empty]]
-        board.currentPlayer = o
+        sut.board.currentPlayer = o
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2)
+        sut.makeMoveAndCheckForWin(row: 2, col: 2)
         
-        XCTAssertEqual(board.winner, board.currentPlayer)
+        XCTAssertEqual(sut.board.winner, sut.board.currentPlayer)
     }
     
     func testIsStartPlayerX() throws {
-        XCTAssertEqual(board.currentPlayer, x)
+        XCTAssertEqual(sut.board.currentPlayer, x)
     }
     
     func testSwitchToPlayerO() throws {
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 0)
+        sut.makeMoveAndCheckForWin(row: 0, col: 0)
         
-        XCTAssertEqual(board.currentPlayer, o)
+        XCTAssertEqual(sut.board.currentPlayer, o)
     }
     
     func testSwitchToPlayerX() throws {
-        board.state = [[x, empty, empty,],
+        sut.board.state = [[x, empty, empty,],
                        [empty, empty, empty],
                        [empty, empty, empty]]
-        board.currentPlayer = o
+        sut.board.currentPlayer = o
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 1)
+        sut.makeMoveAndCheckForWin(row: 0, col: 1)
         
-        XCTAssertEqual(board.currentPlayer, x)
+        XCTAssertEqual(sut.board.currentPlayer, x)
     }
     
     func testDraw() throws {
-        board.state = [[x, o, x,],
+        sut.board.state = [[x, o, x,],
                        [o, x, o],
                        [o, x, empty]]
-        board.currentPlayer = o
-        board.moveCount = 8
+        sut.board.currentPlayer = o
+        sut.board.moveCount = 8
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2)
+        sut.makeMoveAndCheckForWin(row: 2, col: 2)
         
-        XCTAssertEqual(board.winner, BoardState.draw)
+        XCTAssertEqual(sut.board.winner, BoardState.draw)
     }
     
     func testMoveCountAtStart() throws {
-        XCTAssertEqual(board.moveCount, 0)
+        XCTAssertEqual(sut.board.moveCount, 0)
     }
     
     func testMoveCount() throws {
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 0)
+        sut.makeMoveAndCheckForWin(row: 0, col: 0)
         
-        XCTAssertEqual(board.moveCount, 1)
+        XCTAssertEqual(sut.board.moveCount, 1)
     }
 
 }
