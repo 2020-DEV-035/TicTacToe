@@ -6,7 +6,7 @@
 //  Copyright © 2020 2020-DEV-035. All rights reserved.
 //
 
-enum BoardOption {
+enum BoardState {
     case x
     case o
     case empty

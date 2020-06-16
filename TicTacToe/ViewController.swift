@@ -10,52 +10,41 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let boardSize = 3
-    var board: [[BoardOption]] = []
-    var currentPlayer = BoardOption.x
-    
-    required init() {
-        self.board = [[BoardOption]](repeating: [BoardOption](repeating: BoardOption.empty, count: boardSize), count: boardSize)
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
-    }
+    var board = Board(boardSize: 3)
+    var currentPlayer = BoardState.x
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
-    func checkForWin(on board: [[BoardOption]], currentPlayer: BoardOption) -> BoardOption? {
+    func checkForWin(on board: Board, currentPlayer: BoardState) -> BoardState? {
         
         //horizontal
-        for i in 0..<boardSize {
-            if board[0][i] != currentPlayer { break }
-            if (i == boardSize - 1) { return currentPlayer }
+        for i in 0..<board.size {
+            if board.state[0][i] != currentPlayer { break }
+            if (i == board.size - 1) { return currentPlayer }
         }
         
         return nil
     }
     
-    func makeMove(on board: [[BoardOption]], x: Int, y: Int,  currentPlayer: BoardOption) -> [[BoardOption]] {
+    func makeMove(on board: Board, x: Int, y: Int,  currentPlayer: BoardState) -> Board {
         var newBoard = board
         
-        if board[x][y] == BoardOption.empty {
-            newBoard[x][y] = BoardOption.x
+        if board.state[x][y] == BoardState.empty {
+            newBoard.state[x][y] = currentPlayer
             switchPlayer(currentPlayer: currentPlayer)
         }
         
         return newBoard
     }
     
-    private func switchPlayer(currentPlayer: BoardOption) {
-        if currentPlayer == BoardOption.x {
-            self.currentPlayer = BoardOption.o
+    private func switchPlayer(currentPlayer: BoardState) {
+        if currentPlayer == BoardState.x {
+            self.currentPlayer = BoardState.o
         } else {
-            self.currentPlayer = BoardOption.x
+            self.currentPlayer = BoardState.x
         }
     }
     
