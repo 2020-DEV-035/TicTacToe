@@ -5,6 +5,7 @@
 //  Created by 2020-DEV-035 on 16/06/2020.
 //  Copyright © 2020 2020-DEV-035. All rights reserved.
 //
+import UIKit
 
 struct Board {
     var state: [[BoardState]]
@@ -12,6 +13,7 @@ struct Board {
     var winner: BoardState?
     var currentPlayer: BoardState
     var moveCount: Int
+    var tappedCell: UIImageView?
     
     init(boardSize: Int) {
         self.size = boardSize

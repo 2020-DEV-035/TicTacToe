@@ -36,9 +36,10 @@ class ViewController: UIViewController {
     }
     
     func makeMoveAndCheckForWin(row: Int, col: Int) {
-        if board.state[row][col] == BoardState.empty {
+        if isEmptyCell(row, col) {
             board.state[row][col] = board.currentPlayer
             board.moveCount += 1
+            updateBoard(row, col)
         }
         
         if let won = isWinningMove(row: row, col: col) {
@@ -62,6 +63,12 @@ class ViewController: UIViewController {
         }
         
         return nil
+    }
+    
+    private func isEmptyCell(_ row: Int, _ col: Int) -> Bool {
+        if board.state[row][col] == BoardState.empty { return true }
+        
+        return false
     }
     
     private func switchPlayer() {
@@ -96,11 +103,13 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateBoard(with imageView: UIImageView) {
-        if board.currentPlayer == BoardState.o {
-            imageView.image = UIImage(named: "X")
-        } else {
-            imageView.image = UIImage(named: "O")
+    private func updateBoard(_ row: Int, _ col: Int) {
+        if let imageView = board.tappedCell {
+            if board.currentPlayer == BoardState.x {
+                imageView.image = UIImage(named: "X")
+            } else {
+                imageView.image = UIImage(named: "O")
+            }
         }
     }
     
@@ -113,11 +122,10 @@ class ViewController: UIViewController {
         guard let row = gesture.view?.tag else { return }
         guard let col = filteredSubviews?.first?.tag else { return }
         
-        makeMoveAndCheckForWin(row: row, col: col)
-        
         if let imageView = filteredSubviews?.first as? UIImageView {
-            updateBoard(with: imageView)
+            board.tappedCell = imageView
         }
+        makeMoveAndCheckForWin(row: row, col: col)
     }
     
 }
