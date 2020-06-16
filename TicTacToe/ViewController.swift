@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let boardSize = 3
     var board: [[BoardOption]] = []
     var currentPlayer = BoardOption.x
 
@@ -21,9 +22,9 @@ class ViewController: UIViewController {
     func checkForWin(_ board: [[BoardOption]], currentPlayer: BoardOption) -> BoardOption? {
         
         //horizontal
-        for i in 0..<3 {
+        for i in 0..<boardSize {
             if board[0][i] != currentPlayer { break }
-            if (i == 3 - 1) { return currentPlayer }
+            if (i == boardSize - 1) { return currentPlayer }
         }
         
         return nil
