@@ -107,7 +107,7 @@ class TicTacToeTests: XCTestCase {
         XCTAssertEqual(sut.board.winner, x)
     }
     
-    func testAntiDiagonalWin() throws { //AntiDiagonal = from bottomleft to topright
+    func testAntiDiagonalWin() throws { // AntiDiagonal = from bottomleft to topright
         sut.board.state = [[empty, o, x,],
                            [o, x, empty],
                            [empty, empty, empty]]

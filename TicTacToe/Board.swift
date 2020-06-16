@@ -15,11 +15,11 @@ struct Board {
     var moveCount: Int
     var tappedCell: UIImageView?
     
-    init(boardSize: Int) {
-        self.size = boardSize
+    init() {
+        self.size = 3
         self.currentPlayer = BoardState.x
         self.moveCount = 0
-        self.state = [[BoardState]](repeating: [BoardState](repeating: BoardState.empty, count: boardSize), count: boardSize)
+        self.state = [[BoardState]](repeating: [BoardState](repeating: BoardState.empty, count: 3), count: 3)
     }
     
     mutating func reset() {

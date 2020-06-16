@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var board = Board(boardSize: 3)
+    var board = Board()
     
-    private lazy var vStack: UIStackView = { // TODO: better naming
+    private lazy var verticalStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -24,14 +24,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(vStack)
+        view.addSubview(verticalStack)
         createBoard()
         
         NSLayoutConstraint.activate([
-            vStack.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            vStack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            vStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            vStack.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+            verticalStack.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            verticalStack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            verticalStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            verticalStack.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
     }
     
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
             updateBoard(row, col)
         }
         
-        if let winner = isWinningMove(row: row, col: col) {
+        if let winner = isWinningMove(row, col) {
             board.winner = winner
             showGameResult(winner: winner)
         }
@@ -50,21 +50,21 @@ class ViewController: UIViewController {
         switchPlayer()
     }
     
-    func isWinningMove(row: Int, col: Int) -> BoardState? {
+    func isWinningMove(_ row: Int, _ col: Int) -> BoardState? {
         
-        //horizontal
+        // horizontal
         for i in 0..<board.size {
             if board.state[row][i] != board.currentPlayer { break }
             if (i == board.size - 1) { return board.currentPlayer }
         }
         
-        //vertical
+        // vertical
         for i in 0..<board.size {
             if board.state[i][col] != board.currentPlayer { break }
             if (i == board.size - 1) { return board.currentPlayer }
         }
         
-        //diagonal (topleft to bottomright)
+        // diagonal (topleft to bottomright)
         if row == col {
             for i in 0..<board.size {
                 if board.state[i][i] != board.currentPlayer { break }
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
             }
         }
         
-        //anti-diagonal (bottmleft to topright)
+        // anti-diagonal (bottmleft to topright)
         if row + col == board.size - 1 {
             for i in 0..<board.size {
                 if board.state[i][(board.size - 1) - i] != board.currentPlayer { break }
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
             }
         }
 
-        //draw
+        // draw
         if board.moveCount == Int(pow(Double(board.size),Double(2))) {
             return BoardState.draw
         }
@@ -122,7 +122,7 @@ class ViewController: UIViewController {
             }
             
             hStack.tag = col
-            vStack.addArrangedSubview(hStack)
+            verticalStack.addArrangedSubview(hStack)
         }
     }
     
@@ -153,7 +153,7 @@ class ViewController: UIViewController {
     }
     
     private func resetViewAndBoard() {
-        for row in self.vStack.arrangedSubviews {
+        for row in self.verticalStack.arrangedSubviews {
             for item in row.subviews {
                 if let imageView = item as? UIImageView {
                     imageView.image = UIImage(named: "blank")
