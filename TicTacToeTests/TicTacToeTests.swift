@@ -39,7 +39,7 @@ class TicTacToeTests: XCTestCase {
                        [empty, empty, empty]]
         board.currentPlayer = x
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 2, player: board.currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 2)
         
         XCTAssertEqual(board.winner, board.currentPlayer)
     }
@@ -50,7 +50,7 @@ class TicTacToeTests: XCTestCase {
                        [empty, empty, empty]]
         board.currentPlayer = o
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 1, col: 2, player: board.currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 1, col: 2)
         
         XCTAssertEqual(board.winner, board.currentPlayer)
     }
@@ -61,7 +61,7 @@ class TicTacToeTests: XCTestCase {
                        [o, o, empty]]
         board.currentPlayer = o
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2, player: board.currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2)
         
         XCTAssertEqual(board.winner, board.currentPlayer)
     }
@@ -71,7 +71,7 @@ class TicTacToeTests: XCTestCase {
     }
     
     func testSwitchToPlayerO() throws {
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 0, player: board.currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 0)
         
         XCTAssertEqual(board.currentPlayer, o)
     }
@@ -82,7 +82,7 @@ class TicTacToeTests: XCTestCase {
                        [empty, empty, empty]]
         board.currentPlayer = o
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 1, player: board.currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 1)
         
         XCTAssertEqual(board.currentPlayer, x)
     }
@@ -94,7 +94,7 @@ class TicTacToeTests: XCTestCase {
         board.currentPlayer = o
         board.moveCount = 8
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2, player: board.currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2)
         
         XCTAssertEqual(board.winner, BoardState.draw)
     }
@@ -104,7 +104,7 @@ class TicTacToeTests: XCTestCase {
     }
     
     func testMoveCount() throws {
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 0, player: board.currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 0)
         
         XCTAssertEqual(board.moveCount, 1)
     }

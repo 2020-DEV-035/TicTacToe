@@ -17,25 +17,25 @@ class ViewController: UIViewController {
         
     }
     
-    func makeMoveAndCheckForWin(on board: inout Board, row: Int, col: Int, player currentPlayer: BoardState) { // TODO: currentplayer not needed, get it from board
+    func makeMoveAndCheckForWin(on board: inout Board, row: Int, col: Int) {
         if board.state[row][col] == BoardState.empty {
-            board.state[row][col] = currentPlayer
+            board.state[row][col] = board.currentPlayer
             board.moveCount += 1
         }
         
-        if let won = isWinningMove(on: board, row: row, col: col, player: currentPlayer) {
+        if let won = isWinningMove(on: board, row: row, col: col) {
             board.winner = won
         } else {
             switchPlayer(on: &board)
         }
     }
     
-    func isWinningMove(on board: Board, row: Int, col: Int, player currentPlayer: BoardState) -> BoardState? {
+    func isWinningMove(on board: Board, row: Int, col: Int) -> BoardState? {
         
         //horizontal
         for i in 0..<board.size {
-            if board.state[row][i] != currentPlayer { break }
-            if (i == board.size - 1) { return currentPlayer }
+            if board.state[row][i] != board.currentPlayer { break }
+            if (i == board.size - 1) { return board.currentPlayer }
         }
         
         //draw
