@@ -14,6 +14,7 @@
 		0E0D63CF2498FE3C00918EDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D63CE2498FE3C00918EDA /* Assets.xcassets */; };
 		0E0D63D22498FE3C00918EDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D63D02498FE3C00918EDA /* LaunchScreen.storyboard */; };
 		0E0D63DD2498FE3C00918EDA /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D63DC2498FE3C00918EDA /* TicTacToeTests.swift */; };
+		0E0D63EA249900E600918EDA /* BoardOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D63E9249900E600918EDA /* BoardOption.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		0E0D63DC2498FE3C00918EDA /* TicTacToeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeTests.swift; sourceTree = "<group>"; };
 		0E0D63DE2498FE3C00918EDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E0D63E72498FE6500918EDA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0E0D63E9249900E600918EDA /* BoardOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardOption.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		0E0D63C42498FE3B00918EDA /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				0E0D63E8249900CD00918EDA /* Enums */,
 				0E0D63C52498FE3B00918EDA /* AppDelegate.swift */,
 				0E0D63C72498FE3B00918EDA /* SceneDelegate.swift */,
 				0E0D63C92498FE3B00918EDA /* ViewController.swift */,
@@ -99,6 +102,14 @@
 				0E0D63DE2498FE3C00918EDA /* Info.plist */,
 			);
 			path = TicTacToeTests;
+			sourceTree = "<group>";
+		};
+		0E0D63E8249900CD00918EDA /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				0E0D63E9249900E600918EDA /* BoardOption.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E0D63CA2498FE3B00918EDA /* ViewController.swift in Sources */,
+				0E0D63EA249900E600918EDA /* BoardOption.swift in Sources */,
 				0E0D63C62498FE3B00918EDA /* AppDelegate.swift in Sources */,
 				0E0D63C82498FE3B00918EDA /* SceneDelegate.swift in Sources */,
 			);

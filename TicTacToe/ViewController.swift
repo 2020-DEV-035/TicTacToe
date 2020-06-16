@@ -9,12 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var board: [[BoardOption]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
+    func checkForWin(_ board: [[BoardOption]]) -> BoardOption? {
+        
+        //horizontal
+        for i in 0..<3 {
+            if board[0][i] != BoardOption.x { break }
+            if (i == 3 - 1) { return BoardOption.x }
+        }
+        
+        return nil
+    }
 }
 
