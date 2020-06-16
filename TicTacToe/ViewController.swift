@@ -42,8 +42,9 @@ class ViewController: UIViewController {
             updateBoard(row, col)
         }
         
-        if let won = isWinningMove(row: row, col: col) {
-            board.winner = won
+        if let winner = isWinningMove(row: row, col: col) {
+            board.winner = winner
+            showGameResult(winner: winner)
         }
         
         switchPlayer()
@@ -111,6 +112,20 @@ class ViewController: UIViewController {
                 imageView.image = UIImage(named: "O")
             }
         }
+    }
+    
+    private func showGameResult(winner: BoardState) {
+        var title = ""
+        
+        if winner == BoardState.draw {
+            title = "It's a draw."
+        } else {
+            title = "Player \(winner) won."
+        }
+        
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "New game", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func tappedOnCell(gesture: UITapGestureRecognizer) {
