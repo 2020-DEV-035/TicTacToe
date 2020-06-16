@@ -17,12 +17,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    func checkForWin(_ board: [[BoardOption]]) -> BoardOption? {
+    func checkForWin(_ board: [[BoardOption]]) -> Winner? {
         
         //horizontal
         for i in 0..<3 {
             if board[0][i] != BoardOption.x { break }
-            if (i == 3 - 1) { return BoardOption.x }
+            if (i == 3 - 1) { return Winner.playerX }
         }
         
         return nil
