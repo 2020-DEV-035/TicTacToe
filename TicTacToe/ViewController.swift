@@ -140,7 +140,7 @@ class ViewController: UIViewController {
         var title = ""
         
         if winner == BoardState.draw {
-            title = "It's a draw."
+            title = "It's a draw." // TODO: Localize strings
         } else {
             title = "Player \(winner) won."
         }
