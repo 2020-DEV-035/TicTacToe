@@ -64,6 +64,14 @@ class ViewController: UIViewController {
             if (i == board.size - 1) { return board.currentPlayer }
         }
         
+        //diagonal (topleft to bottomright)
+        if row == col {
+            for i in 0..<board.size {
+                if board.state[i][i] != board.currentPlayer { break }
+                if (i == board.size - 1) { return board.currentPlayer }
+            }
+        }
+
         //draw
         if board.moveCount == Int(pow(Double(board.size),Double(2))) {
             return BoardState.draw
