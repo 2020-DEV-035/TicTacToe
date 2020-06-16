@@ -16,6 +16,7 @@ class TicTacToeTests: XCTestCase {
     var o: BoardState!
     var empty: BoardState!
     var board: Board!
+    var currentPlayer: BoardState!
 
     override func setUpWithError() throws {
         sut = ViewController()
@@ -31,48 +32,66 @@ class TicTacToeTests: XCTestCase {
         o = nil
         empty = nil
         board = nil
+        currentPlayer = nil
     }
 
-    func testPlayerXHorizontalWin() throws {
-        board.state = [[x, x, x,],
-                       [o, o, empty],
-                       [empty, empty, empty]]
-        
-        let winner = sut.checkForWin(on: board, currentPlayer: x)
-        
-        XCTAssertEqual(winner, BoardState.x)
-    }
+//    func testPlayerXHorizontalWin() throws {
+//        board.state = [[x, x, x,],
+//                       [o, o, empty],
+//                       [empty, empty, empty]]
+//
+//        let winner = sut.checkForWin(on: board, currentPlayer: x)
+//
+//        XCTAssertEqual(winner, BoardState.x)
+//    }
+//
+//    func testPlayerOHorizontalWin() throws {
+//        board.state = [[o, o, o,],
+//                       [x, x, empty],
+//                       [empty, empty, empty]]
+//
+//        let winner = sut.checkForWin(on: board, currentPlayer: o)
+//
+//        XCTAssertEqual(winner, BoardState.o)
+//    }
     
-    func testPlayerOHorizontalWin() throws {
-        board.state = [[o, o, o,],
-                       [x, x, empty],
-                       [empty, empty, empty]]
-        
-        let winner = sut.checkForWin(on: board, currentPlayer: o)
-        
-        XCTAssertEqual(winner, BoardState.o)
-    }
-    
-    func testPlayerXWinningMove() throws {
+    func testHorizontalWinOnFirstRow() throws {
         board.state = [[x, x, empty,],
                        [o, o, empty],
                        [empty, empty, empty]]
+        currentPlayer = x
+        let winner: BoardState?
         
-        board = sut.makeMove(on: board, x: 0, y: 2, currentPlayer: x)
-        let winner = sut.checkForWin(on: board, currentPlayer: x)
+        board = sut.makeMove(on: &board, x: 0, y: 2, player: currentPlayer)
+        winner = sut.isWinningMove(on: board, player: currentPlayer, 0, 2)
         
-        XCTAssertEqual(winner, BoardState.x)
+        XCTAssertEqual(winner, currentPlayer)
     }
     
-    func testPlayerOWinningMove() throws {
-        board.state = [[o, o, empty,],
-                       [x, x, empty],
-                       [x, empty, empty]]
+    func testHorizontalWinOnSecondRow() throws {
+        board.state = [[x, x, empty,],
+                       [o, o, empty],
+                       [empty, empty, empty]]
+        currentPlayer = o
+        let winner: BoardState?
         
-        board = sut.makeMove(on: board, x: 0, y: 2, currentPlayer: o)
-        let winner = sut.checkForWin(on: board, currentPlayer: o)
+        board = sut.makeMove(on: &board, x: 1, y: 2, player: currentPlayer)
+        winner = sut.isWinningMove(on: board, player: currentPlayer, 1, 2)
         
-        XCTAssertEqual(winner, BoardState.o)
+        XCTAssertEqual(winner, currentPlayer)
+    }
+    
+    func testHorizontalWinOnThirdRow() throws {
+        board.state = [[x, x, empty,],
+                       [empty, empty, empty],
+                       [o, o, empty]]
+        currentPlayer = o
+        let winner: BoardState?
+        
+        board = sut.makeMove(on: &board, x: 2, y: 2, player: currentPlayer)
+        winner = sut.isWinningMove(on: board, player: currentPlayer, 2, 2)
+        
+        XCTAssertEqual(winner, currentPlayer)
     }
 
 }

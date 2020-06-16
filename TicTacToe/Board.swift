@@ -9,6 +9,7 @@
 struct Board {
     var state: [[BoardState]]
     var size: Int
+    var winner: BoardState?
     
     init(boardSize: Int) {
         self.size = boardSize
