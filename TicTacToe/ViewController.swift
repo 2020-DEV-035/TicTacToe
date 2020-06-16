@@ -25,7 +25,7 @@ class ViewController: UIViewController {
             if (i == 3 - 1) { return Winner.playerX }
         }
         
-        return nil
+        return Winner.none
     }
 }
 
