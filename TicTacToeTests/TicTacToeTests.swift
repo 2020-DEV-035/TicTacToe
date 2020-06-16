@@ -62,8 +62,8 @@ class TicTacToeTests: XCTestCase {
         currentPlayer = x
         let winner: BoardState?
         
-        board = sut.makeMove(on: &board, x: 0, y: 2, player: currentPlayer)
-        winner = sut.isWinningMove(on: board, player: currentPlayer, 0, 2)
+        board = sut.makeMove(on: &board, row: 0, col: 2, player: currentPlayer)
+        winner = sut.isWinningMove(on: board, row: 0, col: 2, player: currentPlayer)
         
         XCTAssertEqual(winner, currentPlayer)
     }
@@ -75,8 +75,8 @@ class TicTacToeTests: XCTestCase {
         currentPlayer = o
         let winner: BoardState?
         
-        board = sut.makeMove(on: &board, x: 1, y: 2, player: currentPlayer)
-        winner = sut.isWinningMove(on: board, player: currentPlayer, 1, 2)
+        board = sut.makeMove(on: &board, row: 1, col: 2, player: currentPlayer)
+        winner = sut.isWinningMove(on: board, row: 1, col: 2, player: currentPlayer)
         
         XCTAssertEqual(winner, currentPlayer)
     }
@@ -88,8 +88,8 @@ class TicTacToeTests: XCTestCase {
         currentPlayer = o
         let winner: BoardState?
         
-        board = sut.makeMove(on: &board, x: 2, y: 2, player: currentPlayer)
-        winner = sut.isWinningMove(on: board, player: currentPlayer, 2, 2)
+        board = sut.makeMove(on: &board, row: 2, col: 2, player: currentPlayer)
+        winner = sut.isWinningMove(on: board, row: 2, col: 2, player: currentPlayer)
         
         XCTAssertEqual(winner, currentPlayer)
     }
