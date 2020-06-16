@@ -11,10 +11,12 @@ struct Board {
     var size: Int
     var winner: BoardState?
     var currentPlayer: BoardState
+    var moveCount: Int
     
     init(boardSize: Int) {
         self.size = boardSize
         self.currentPlayer = BoardState.x
+        self.moveCount = 0
         state = [[BoardState]](repeating: [BoardState](repeating: BoardState.empty, count: boardSize), count: boardSize)
     }
 }

@@ -17,6 +17,19 @@ class ViewController: UIViewController {
         
     }
     
+    func makeMoveAndCheckForWin(on board: inout Board, row: Int, col: Int, player currentPlayer: BoardState) { // TODO: currentplayer not needed, get it from board
+        if board.state[row][col] == BoardState.empty {
+            board.state[row][col] = currentPlayer
+            board.moveCount += 1
+        }
+        
+        if let won = isWinningMove(on: board, row: row, col: col, player: currentPlayer) {
+            board.winner = won
+        } else {
+            switchPlayer(on: &board)
+        }
+    }
+    
     func isWinningMove(on board: Board, row: Int, col: Int, player currentPlayer: BoardState) -> BoardState? {
         
         //horizontal
@@ -25,19 +38,12 @@ class ViewController: UIViewController {
             if (i == board.size - 1) { return currentPlayer }
         }
         
-        return nil
-    }
-    
-    func makeMoveAndCheckForWin(on board: inout Board, row: Int, col: Int, player currentPlayer: BoardState){
-        if board.state[row][col] == BoardState.empty {
-            board.state[row][col] = currentPlayer
+        //draw
+        if board.moveCount == Int(pow(Double(board.size),Double(2))) {
+            return BoardState.draw
         }
         
-        if let won = isWinningMove(on: board, row: row, col: col, player: currentPlayer) {
-            board.winner = won
-        } else {
-            switchPlayer(on: &board)
-        }
+        return nil
     }
     
     private func switchPlayer(on board: inout Board) {
