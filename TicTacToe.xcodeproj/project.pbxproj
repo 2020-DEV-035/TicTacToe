@@ -38,6 +38,7 @@
 		0E0D63D82498FE3C00918EDA /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E0D63DC2498FE3C00918EDA /* TicTacToeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeTests.swift; sourceTree = "<group>"; };
 		0E0D63DE2498FE3C00918EDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E0D63E72498FE6500918EDA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 		0E0D63B92498FE3B00918EDA = {
 			isa = PBXGroup;
 			children = (
+				0E0D63E72498FE6500918EDA /* README.md */,
 				0E0D63C42498FE3B00918EDA /* TicTacToe */,
 				0E0D63DB2498FE3C00918EDA /* TicTacToeTests */,
 				0E0D63C32498FE3B00918EDA /* Products */,
