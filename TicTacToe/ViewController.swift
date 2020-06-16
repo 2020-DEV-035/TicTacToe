@@ -29,5 +29,9 @@ class ViewController: UIViewController {
         
         return nil
     }
+    
+    func makeMove(_ board: [[BoardOption]], x: Int, y: Int,  currentPlayer: BoardOption) {
+        
+    }
 }
 
