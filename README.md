@@ -4,3 +4,7 @@ This is a codekata performed by using Test Driven Development (TDD). The full ex
 # Start
 1. Clone repository on your computer by running `https://github.com/2020-DEV-035/TicTacToe.git` in your terminal
 2. `cd` into the directory
+3. Make sure you are on the develop branch: `git branch develop`
+4. Open current directory in finder with command `open .`
+5. Open TicTacToe.xcodeproj
+6. Run project
