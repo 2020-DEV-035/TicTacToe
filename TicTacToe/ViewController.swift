@@ -79,17 +79,6 @@ class ViewController: UIViewController {
                 if (i == board.size - 1) { return board.currentPlayer }
             }
         }
-//
-//        //check anti diag (thanks rampion)
-//         if(x + y == n - 1){
-//             for(int i = 0; i < n; i++){
-//                 if(board[i][(n-1)-i] != s)
-//                     break;
-//                 if(i == n-1){
-//                     //report win for s
-//                 }
-//             }
-//         }
 
         //draw
         if board.moveCount == Int(pow(Double(board.size),Double(2))) {
