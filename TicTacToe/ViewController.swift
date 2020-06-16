@@ -84,6 +84,7 @@ class ViewController: UIViewController {
                 let myView = UIView()
                 myView.backgroundColor = .red
                 myView.tag = row
+                hStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedOnCell)))
                 hStack.addArrangedSubview(myView)
 
             }
@@ -91,6 +92,18 @@ class ViewController: UIViewController {
             hStack.tag = col
             vStack.addArrangedSubview(hStack)
         }
+    }
+    
+    @objc func tappedOnCell(gesture: UITapGestureRecognizer) {
+        let tapLocation = gesture.location(in: gesture.view)
+        let filteredSubviews = gesture.view?.subviews.filter { subView -> Bool in
+          return subView.frame.contains(tapLocation)
+        }
+        
+        guard let row = gesture.view?.tag else { return }
+        guard let col = filteredSubviews?.first?.tag else { return }
+        
+        print("\(row),\(col)")
     }
     
 }
