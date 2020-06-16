@@ -10,4 +10,5 @@ enum BoardState {
     case x
     case o
     case empty
+    case draw
 }

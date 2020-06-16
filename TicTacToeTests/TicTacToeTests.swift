@@ -16,7 +16,6 @@ class TicTacToeTests: XCTestCase {
     var o: BoardState!
     var empty: BoardState!
     var board: Board!
-    var currentPlayer: BoardState!
 
     override func setUpWithError() throws {
         sut = ViewController()
@@ -32,46 +31,39 @@ class TicTacToeTests: XCTestCase {
         o = nil
         empty = nil
         board = nil
-        currentPlayer = nil
     }
 
     func testHorizontalWinOnFirstRow() throws {
         board.state = [[x, x, empty,],
                        [o, o, empty],
                        [empty, empty, empty]]
-        currentPlayer = x
-        let winner: BoardState?
+        board.currentPlayer = x
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 2, player: currentPlayer)
-        winner = sut.isWinningMove(on: board, row: 0, col: 2, player: currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 2, player: board.currentPlayer)
         
-        XCTAssertEqual(winner, currentPlayer)
+        XCTAssertEqual(board.winner, board.currentPlayer)
     }
     
     func testHorizontalWinOnSecondRow() throws {
         board.state = [[x, x, empty,],
                        [o, o, empty],
                        [empty, empty, empty]]
-        currentPlayer = o
-        let winner: BoardState?
+        board.currentPlayer = o
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 1, col: 2, player: currentPlayer)
-        winner = sut.isWinningMove(on: board, row: 1, col: 2, player: currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 1, col: 2, player: board.currentPlayer)
         
-        XCTAssertEqual(winner, currentPlayer)
+        XCTAssertEqual(board.winner, board.currentPlayer)
     }
     
     func testHorizontalWinOnThirdRow() throws {
         board.state = [[x, x, empty,],
                        [empty, empty, empty],
                        [o, o, empty]]
-        currentPlayer = o
-        let winner: BoardState?
+        board.currentPlayer = o
         
-        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2, player: currentPlayer)
-        winner = sut.isWinningMove(on: board, row: 2, col: 2, player: currentPlayer)
+        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2, player: board.currentPlayer)
         
-        XCTAssertEqual(winner, currentPlayer)
+        XCTAssertEqual(board.winner, board.currentPlayer)
     }
     
     func testIsStartPlayerX() throws {
@@ -93,6 +85,17 @@ class TicTacToeTests: XCTestCase {
         sut.makeMoveAndCheckForWin(on: &board, row: 0, col: 1, player: board.currentPlayer)
         
         XCTAssertEqual(board.currentPlayer, x)
+    }
+    
+    func testDraw() throws {
+        board.state = [[x, o, x,],
+                       [o, x, o],
+                       [o, x, empty]]
+        board.currentPlayer = o
+        
+        sut.makeMoveAndCheckForWin(on: &board, row: 2, col: 2, player: board.currentPlayer)
+        
+        XCTAssertEqual(board.winner, BoardState.draw)
     }
 
 }
