@@ -40,7 +40,7 @@ class ViewController: UIViewController {
             board.state[row][col] = board.currentPlayer
             board.moveCount += 1
             updateBoard(row, col)
-        }
+        } else { return }
         
         if let winner = isWinningMove(row, col) {
             board.winner = winner
