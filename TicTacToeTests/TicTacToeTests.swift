@@ -32,8 +32,8 @@ class TicTacToeTests: XCTestCase {
 
     func testHorizontalWinOnFirstRow() throws {
         sut.board.state = [[x, x, empty,],
-                       [o, o, empty],
-                       [empty, empty, empty]]
+                           [o, o, empty],
+                           [empty, empty, empty]]
         sut.board.currentPlayer = x
         
         sut.makeMoveAndCheckForWin(row: 0, col: 2)
@@ -43,8 +43,8 @@ class TicTacToeTests: XCTestCase {
     
     func testHorizontalWinOnSecondRow() throws {
         sut.board.state = [[x, x, empty,],
-                       [o, o, empty],
-                       [empty, empty, empty]]
+                           [o, o, empty],
+                           [empty, empty, empty]]
         sut.board.currentPlayer = o
         
         sut.makeMoveAndCheckForWin(row: 1, col: 2)
@@ -54,8 +54,8 @@ class TicTacToeTests: XCTestCase {
     
     func testHorizontalWinOnThirdRow() throws {
         sut.board.state = [[x, x, empty,],
-                       [empty, empty, empty],
-                       [o, o, empty]]
+                           [empty, empty, empty],
+                           [o, o, empty]]
         sut.board.currentPlayer = o
         
         sut.makeMoveAndCheckForWin(row: 2, col: 2)
@@ -75,8 +75,8 @@ class TicTacToeTests: XCTestCase {
     
     func testSwitchToPlayerX() throws {
         sut.board.state = [[x, empty, empty,],
-                       [empty, empty, empty],
-                       [empty, empty, empty]]
+                           [empty, empty, empty],
+                           [empty, empty, empty]]
         sut.board.currentPlayer = o
         
         sut.makeMoveAndCheckForWin(row: 0, col: 1)
@@ -86,8 +86,8 @@ class TicTacToeTests: XCTestCase {
     
     func testDraw() throws {
         sut.board.state = [[x, o, x,],
-                       [o, x, o],
-                       [o, x, empty]]
+                           [o, x, o],
+                           [o, x, empty]]
         sut.board.currentPlayer = o
         sut.board.moveCount = 8
         
