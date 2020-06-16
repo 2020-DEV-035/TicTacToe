@@ -35,9 +35,9 @@ class TicTacToeTests: XCTestCase {
                                      [o, o, empty],
                                      [empty, empty, empty]]
         
-        let winner = sut.checkForWin(board)
+        let winner = sut.checkForWin(board, currentPlayer: x)
         
-        XCTAssertEqual(winner, Winner.playerX)
+        XCTAssertEqual(winner, BoardOption.x)
     }
     
     func testPlayerOHorizontalWin() throws {
@@ -45,9 +45,9 @@ class TicTacToeTests: XCTestCase {
                                      [x, x, empty],
                                      [empty, empty, empty]]
         
-        let winner = sut.checkForWin(board)
+        let winner = sut.checkForWin(board, currentPlayer: o)
         
-        XCTAssertEqual(winner, Winner.playerO)
+        XCTAssertEqual(winner, BoardOption.o)
     }
 
 }

@@ -11,21 +11,22 @@ import UIKit
 class ViewController: UIViewController {
     
     var board: [[BoardOption]] = []
+    var currentPlayer = BoardOption.x
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-    func checkForWin(_ board: [[BoardOption]]) -> Winner? {
+    func checkForWin(_ board: [[BoardOption]], currentPlayer: BoardOption) -> BoardOption? {
         
         //horizontal
         for i in 0..<3 {
-            if board[0][i] != BoardOption.x { break }
-            if (i == 3 - 1) { return Winner.playerX }
+            if board[0][i] != currentPlayer { break }
+            if (i == 3 - 1) { return currentPlayer }
         }
         
-        return Winner.none
+        return nil
     }
 }
 
