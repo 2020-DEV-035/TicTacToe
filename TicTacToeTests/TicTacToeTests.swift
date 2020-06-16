@@ -63,6 +63,39 @@ class TicTacToeTests: XCTestCase {
         XCTAssertEqual(sut.board.winner, o)
     }
     
+    func testVerticalWinOnFirstColumn() throws {
+        sut.board.state = [[x, o, empty,],
+                           [x, o, empty],
+                           [empty, empty, empty]]
+        sut.board.currentPlayer = x
+        
+        sut.makeMoveAndCheckForWin(row: 2, col: 0)
+        
+        XCTAssertEqual(sut.board.winner, x)
+    }
+    
+    func testVerticalWinOnSecondColumn() throws {
+        sut.board.state = [[empty, o, x,],
+                           [empty, o, x],
+                           [empty, empty, empty]]
+        sut.board.currentPlayer = o
+        
+        sut.makeMoveAndCheckForWin(row: 2, col: 1)
+        
+        XCTAssertEqual(sut.board.winner, o)
+    }
+    
+    func testVerticalWinOnThirdColumn() throws {
+        sut.board.state = [[empty, o, x,],
+                           [empty, o, x],
+                           [empty, empty, empty]]
+        sut.board.currentPlayer = x
+        
+        sut.makeMoveAndCheckForWin(row: 2, col: 2)
+        
+        XCTAssertEqual(sut.board.winner, x)
+    }
+    
     func testIsStartPlayerX() throws {
         XCTAssertEqual(sut.board.currentPlayer, x)
     }
