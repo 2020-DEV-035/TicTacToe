@@ -79,13 +79,15 @@ class ViewController: UIViewController {
             hStack.distribution = .fillEqually
             
             for row in 0..<board.size {
-                let myView = UIView()
-                myView.layer.borderWidth = 3
-                myView.layer.borderColor = UIColor.black.cgColor
-                myView.tag = row
+                let imageView = UIImageView()
+                imageView.image = UIImage(named: "blank")
+                imageView.layer.borderWidth = 3
+                imageView.layer.borderColor = UIColor.black.cgColor
+                imageView.tag = row
+                imageView.contentMode = .scaleAspectFit
                 
                 hStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedOnCell)))
-                hStack.addArrangedSubview(myView)
+                hStack.addArrangedSubview(imageView)
 
             }
             
@@ -94,11 +96,11 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateBoard(where view: UIView) {
+    private func updateBoard(with imageView: UIImageView) {
         if board.currentPlayer == BoardState.o {
-            view.backgroundColor = .red
+            imageView.image = UIImage(named: "X")
         } else {
-            view.backgroundColor = .green
+            imageView.image = UIImage(named: "O")
         }
     }
     
@@ -108,12 +110,14 @@ class ViewController: UIViewController {
           return subView.frame.contains(tapLocation)
         }
         
-        guard let tappedView = filteredSubviews?.first else { return }
         guard let row = gesture.view?.tag else { return }
         guard let col = filteredSubviews?.first?.tag else { return }
         
         makeMoveAndCheckForWin(row: row, col: col)
-        updateBoard(where: tappedView)
+        
+        if let imageView = filteredSubviews?.first as? UIImageView {
+            updateBoard(with: imageView)
+        }
     }
     
 }
